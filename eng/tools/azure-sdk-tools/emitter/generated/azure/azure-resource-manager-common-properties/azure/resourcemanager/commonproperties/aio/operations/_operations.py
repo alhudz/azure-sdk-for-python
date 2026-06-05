@@ -27,7 +27,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import models as _models
+from ... import models as _models, types as _types
 from ..._utils.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
@@ -39,7 +39,6 @@ from ...operations._operations import (
 )
 from .._configuration import CommonPropertiesClientConfiguration
 
-JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
@@ -167,7 +166,7 @@ class ManagedIdentityOperations:
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,
-        resource: JSON,
+        resource: _types.ManagedIdentityTrackedResource,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -180,7 +179,7 @@ class ManagedIdentityOperations:
         :param managed_identity_tracked_resource_name: arm resource name for path. Required.
         :type managed_identity_tracked_resource_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: JSON
+        :type resource: ~azure.resourcemanager.commonproperties.types.ManagedIdentityTrackedResource
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -223,7 +222,7 @@ class ManagedIdentityOperations:
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,
-        resource: Union[_models.ManagedIdentityTrackedResource, JSON, IO[bytes]],
+        resource: Union[_models.ManagedIdentityTrackedResource, _types.ManagedIdentityTrackedResource, IO[bytes]],
         **kwargs: Any
     ) -> _models.ManagedIdentityTrackedResource:
         """Create a ManagedIdentityTrackedResource.
@@ -233,10 +232,10 @@ class ManagedIdentityOperations:
         :type resource_group_name: str
         :param managed_identity_tracked_resource_name: arm resource name for path. Required.
         :type managed_identity_tracked_resource_name: str
-        :param resource: Resource create parameters. Is one of the following types:
-         ManagedIdentityTrackedResource, JSON, IO[bytes] Required.
+        :param resource: Resource create parameters. Is either a ManagedIdentityTrackedResource type or
+         a IO[bytes] type. Required.
         :type resource: ~azure.resourcemanager.commonproperties.models.ManagedIdentityTrackedResource
-         or JSON or IO[bytes]
+         or ~azure.resourcemanager.commonproperties.types.ManagedIdentityTrackedResource or IO[bytes]
         :return: ManagedIdentityTrackedResource. The ManagedIdentityTrackedResource is compatible with
          MutableMapping
         :rtype: ~azure.resourcemanager.commonproperties.models.ManagedIdentityTrackedResource
@@ -342,7 +341,7 @@ class ManagedIdentityOperations:
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,
-        properties: JSON,
+        properties: _types.ManagedIdentityTrackedResource,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -355,7 +354,7 @@ class ManagedIdentityOperations:
         :param managed_identity_tracked_resource_name: arm resource name for path. Required.
         :type managed_identity_tracked_resource_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: JSON
+        :type properties: ~azure.resourcemanager.commonproperties.types.ManagedIdentityTrackedResource
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -398,7 +397,7 @@ class ManagedIdentityOperations:
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,
-        properties: Union[_models.ManagedIdentityTrackedResource, JSON, IO[bytes]],
+        properties: Union[_models.ManagedIdentityTrackedResource, _types.ManagedIdentityTrackedResource, IO[bytes]],
         **kwargs: Any
     ) -> _models.ManagedIdentityTrackedResource:
         """Update a ManagedIdentityTrackedResource.
@@ -408,10 +407,10 @@ class ManagedIdentityOperations:
         :type resource_group_name: str
         :param managed_identity_tracked_resource_name: arm resource name for path. Required.
         :type managed_identity_tracked_resource_name: str
-        :param properties: The resource properties to be updated. Is one of the following types:
-         ManagedIdentityTrackedResource, JSON, IO[bytes] Required.
+        :param properties: The resource properties to be updated. Is either a
+         ManagedIdentityTrackedResource type or a IO[bytes] type. Required.
         :type properties: ~azure.resourcemanager.commonproperties.models.ManagedIdentityTrackedResource
-         or JSON or IO[bytes]
+         or ~azure.resourcemanager.commonproperties.types.ManagedIdentityTrackedResource or IO[bytes]
         :return: ManagedIdentityTrackedResource. The ManagedIdentityTrackedResource is compatible with
          MutableMapping
         :rtype: ~azure.resourcemanager.commonproperties.models.ManagedIdentityTrackedResource
@@ -606,7 +605,7 @@ class ErrorOperations:
         self,
         resource_group_name: str,
         confidential_resource_name: str,
-        resource: JSON,
+        resource: _types.ConfidentialResource,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -619,7 +618,7 @@ class ErrorOperations:
         :param confidential_resource_name: The name of the ConfidentialResource. Required.
         :type confidential_resource_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: JSON
+        :type resource: ~azure.resourcemanager.commonproperties.types.ConfidentialResource
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -660,7 +659,7 @@ class ErrorOperations:
         self,
         resource_group_name: str,
         confidential_resource_name: str,
-        resource: Union[_models.ConfidentialResource, JSON, IO[bytes]],
+        resource: Union[_models.ConfidentialResource, _types.ConfidentialResource, IO[bytes]],
         **kwargs: Any
     ) -> _models.ConfidentialResource:
         """Create a ConfidentialResource.
@@ -670,10 +669,10 @@ class ErrorOperations:
         :type resource_group_name: str
         :param confidential_resource_name: The name of the ConfidentialResource. Required.
         :type confidential_resource_name: str
-        :param resource: Resource create parameters. Is one of the following types:
-         ConfidentialResource, JSON, IO[bytes] Required.
-        :type resource: ~azure.resourcemanager.commonproperties.models.ConfidentialResource or JSON or
-         IO[bytes]
+        :param resource: Resource create parameters. Is either a ConfidentialResource type or a
+         IO[bytes] type. Required.
+        :type resource: ~azure.resourcemanager.commonproperties.models.ConfidentialResource or
+         ~azure.resourcemanager.commonproperties.types.ConfidentialResource or IO[bytes]
         :return: ConfidentialResource. The ConfidentialResource is compatible with MutableMapping
         :rtype: ~azure.resourcemanager.commonproperties.models.ConfidentialResource
         :raises ~azure.core.exceptions.HttpResponseError:
